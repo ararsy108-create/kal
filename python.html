@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>KOMPUTASI ALJABAR LINIER (SISTEM PERSAMAAN LINIER)</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        <div class="container-navbar">
+            <ul class="ul-navbar">
+                <li class="li-navbar">
+                    <a href="index.html" class="a-navbar">HOME</a>
+                </li>
+                <li class="li-navbar">
+                    <a href="materi.html" class="a-navbar">MATERI</a>
+                </li>
+                <li class="li-navbar">
+                    <a href="obe.html" class="a-navbar">OBE</a>
+                </li>
+                <li class="li-navbar">
+                    <a href="python.html" class="a-navbar">PYTHON</a>
+                </li>
+                <li class="li-navbar">
+                    <a href="geogebra.html" class="a-navbar">GEOGEBRA</a>
+                </li>
+            </ul>
+            <h3 class="h-navbar">Tampilan Dalam Code Python</h3>
+            <h4 class="h-navbar">Solusi tunggal</h4>
+            <p class="p-navbar">Sistem persamaan linier yaitu kumpulan dari dua atau lebih persamaan linier dengan variabel yang sama. Tujuan utama: menemukan nilai variabel yang memenuhi semua persamaan secara bersamaan.</p>
+            <h3 class="h2-navbar">\(x + y = 5\)<br>
+                \(2x - y = 1\)</h3>
+            <pre><code>
+                import numpy as np
+
+                def solve_spl(matrix):
+                    A = np.array(matrix, dtype=float)
+                    n = len(A)
+
+                    for i in range(n):
+                        # Pivot
+                        if A[i][i] == 0:
+                            for j in range(i+1, n):
+                                if A[j][i] != 0:
+                                    A[[i, j]] = A[[j, i]]
+                                    break
+
+                        # Normalisasi pivot jadi 1
+                        A[i] = A[i] / A[i][i]
+
+                        # Eliminasi bawah
+                        for j in range(i+1, n):
+                            A[j] = A[j] - A[j][i] * A[i]
+
+                    # Back substitution
+                    x = np.zeros(n)
+                    for i in range(n-1, -1, -1):
+                        x[i] = A[i][-1] - sum(A[i][j] * x[j] for j in range(i+1, n))
+
+                    return x
+
+                # Contoh penggunaan
+                matrix = np.array([[1, 1, 5],
+                                [2, -1, 1]])
+
+                hasil = solve_spl(matrix)
+                print("x + y = 5\n2x - y = 1")
+                print(f"bentuk matriksnya yaitu \n{matrix}")
+                print("Solusi:", hasil)
+            </code></pre>
+            <hr color="nnnnnn" size="2px">
+
+            <h3 class="h-navbar">Output</h3>
+            <p class="p-navbar">Sistem Persamaan:</p>
+            <p class="p2-navbar">\(x + y = 5\) <br>
+                \(2x - y = 1\)</p>
+            <p class="p-navbar">Bentuk Matriks:</p>
+            <p class="p-navbar">\[
+                \left[
+                \begin{array}{cc|c}
+                1 & 1 & 5 \\
+                2 & -1 & 1
+                \end{array}
+                \right]
+                \]
+            </p>
+            <p class="p-navbar">Solusi:</p>
+            <p class="p2-navbar">\[
+                (x, y) = (2, 3)
+                \]</p>
+             <hr color="nnnnnn" size="2px">
+            
+            <h3 class="h-navbar">Tampilan Dalam Code Python</h3>
+            <h4 class="h-navbar">Solusi Banyak</h4>
+            <p class="p-navbar">\[
+                \begin{cases}
+                x + y + z = 6 \\
+                2x + 2y + 2z = 12 \\
+                3x + 3y + 3z = 18
+                \end{cases}
+                \]</p>
+            <pre><code>
+                import numpy as np
+
+                def spl_solusi_banyak_dengan_langkah():
+                    # Matriks augmented
+                    A = np.array([
+                        [1, 1, 1, 6],
+                        [2, 2, 2, 12],
+                        [3, 3, 3, 18]
+                    ], dtype=float)
+
+                    print("LANGKAH 0: Matriks Augmented Awal")
+                    print(A)
+                    print("-" * 40)
+
+                    # =========================
+                    # Langkah 1: R2 -> R2 - 2R1
+                    # =========================
+                    print("LANGKAH 1: R2 → R2 - 2R1")
+                    A[1] = A[1] - 2 * A[0]
+                    print(A)
+                    print("-" * 40)
+
+                    # =========================
+                    # Langkah 2: R3 -> R3 - 3R1
+                    # =========================
+                    print("LANGKAH 2: R3 → R3 - 3R1")
+                    A[2] = A[2] - 3 * A[0]
+                    print(A)
+                    print("-" * 40)
+
+                    # =========================
+                    # Kesimpulan
+                    # =========================
+                    print("KESIMPULAN:")
+                    print("Terdapat dua baris nol.")
+                    print("Artinya hanya ada satu persamaan independen.")
+                    print("Sistem memiliki SOLUSI BANYAK (tak hingga).")
+                    print()
+
+                    print("Persamaan tersisa:")
+                    print("x + y + z = 6")
+                    print()
+
+                    print("Misalkan:")
+                    print("y = s")
+                    print("z = t")
+                    print()
+
+                    print("Maka solusi umum:")
+                    print("x = 6 - s - t")
+                    print("y = s")
+                    print("z = t")
+
+                # Panggil fungsi
+                spl_solusi_banyak_dengan_langkah()
+            </code></pre>
+            <hr color="nnnnnn" size="2px">
+
+            <h3 class="h-navbar">Output:</h3>
+            <p class="p-navbar">Proses Eliminasi Gauss <br>
+                <b>Langkah 1</b>  
+                \( R_2 \rightarrow R_2 - 2R_1 \)
+
+                \[
+                \begin{bmatrix}
+                1 & 1 & 1 & 6 \\
+                0 & 0 & 0 & 0 \\
+                3 & 3 & 3 & 18
+                \end{bmatrix}
+                \]
+
+                <b>Langkah 2</b>
+                \( R_3 \rightarrow R_3 - 3R_1 \)
+
+                \[
+                \begin{bmatrix}
+                1 & 1 & 1 & 6 \\
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 0
+                \end{bmatrix}
+                \]
+
+                <b>Kesimpulan</b><br>
+
+                Terdapat dua baris nol.<br>  
+                Artinya hanya ada satu persamaan independen.<br>  
+
+                Sistem memiliki <b>solusi banyak (tak hingga)</b>.
+           
+                \[
+                x + y + z = 6
+                \]<br>
+
+                Misalkan<br>
+
+                \[
+                y = s
+                \]
+                \[
+                z = t
+                \]
+
+                Maka Solusi Umum
+
+                \[
+                x = 6 - s - t
+                \]
+
+                \[
+                y = s
+                \]
+
+                \[
+                z = t
+                \]
+
+                dengan \( s, t \in \mathbb{R} \).</p>
+             <hr color="nnnnnn" size="2px">
+
+            <h3 class="h-navbar">Tampilan Dalam Code Python</h3>
+            <h4 class="h-navbar">Tidak Ada Solusi</h4>
+            <p class="p-navbar">\[
+                \left\{
+                \begin{aligned}
+                x + y + z &= 6 \\
+                2x + 2y + 2z &= 12 \\
+                x + y + z &= 10
+                \end{aligned}
+                \right.
+                \]</p>
+            <p class="p-navbar">Persamaan Tersisa<br>
+            <pre><code>
+                import numpy as np
+
+                def spl_tidak_ada_solusi_dengan_langkah():
+                    # Matriks augmented
+                    A = np.array([
+                        [1, 1, 1, 6],
+                        [2, 2, 2, 12],
+                        [1, 1, 1, 10]
+                    ], dtype=float)
+
+                    print("LANGKAH 0: Matriks Augmented Awal")
+                    print(A)
+                    print("-" * 50)
+
+                    # =========================
+                    # Langkah 1: R2 -> R2 - 2R1
+                    # =========================
+                    print("LANGKAH 1: R2 → R2 - 2R1")
+                    A[1] = A[1] - 2 * A[0]
+                    print(A)
+                    print("-" * 50)
+
+                    # =========================
+                    # Langkah 2: R3 -> R3 - R1
+                    # =========================
+                    print("LANGKAH 2: R3 → R3 - R1")
+                    A[2] = A[2] - A[0]
+                    print(A)
+                    print("-" * 50)
+
+                    # =========================
+                    # Kesimpulan
+                    # =========================
+                    print("KESIMPULAN:")
+                    print("Muncul baris:")
+                    print(A[2])
+                    print()
+                    print("Artinya:")
+                    print("0x + 0y + 0z = 4")
+                    print("0 = 4 (Kontradiksi)")
+                    print()
+                    print("Maka sistem TIDAK MEMILIKI SOLUSI.")
+
+                # Panggil fungsi
+                spl_tidak_ada_solusi_dengan_langkah()
+            </code></pre>
+            <hr color="nnnnnn" size="2px">
+            
+            <h3 class="h-navbar">Output:</h3>
+            <p class="p-navbar"><b>LANGKAH 0:</b> Matriks Augmented Awal
+                
+                \[
+                \left[
+                \begin{array}{ccc|c}
+                1 & 1 & 1 & 6 \\
+                2 & 2 & 2 & 12 \\
+                1 & 1 & 1 & 10
+                \end{array}
+                \right]
+                \]
+
+                <b>LANGKAH 1</b>  
+                \( R_2 \rightarrow R_2 - 2R_1 \)
+
+                \[
+                \left[
+                \begin{array}{ccc|c}
+                1 & 1 & 1 & 6 \\
+                0 & 0 & 0 & 0 \\
+                1 & 1 & 1 & 10
+                \end{array}
+                \right]
+                \]
+
+                <b>LANGKAH 2</b>  
+                \( R_3 \rightarrow R_3 - R_1 \)
+
+                \[
+                \left[
+                \begin{array}{ccc|c}
+                1 & 1 & 1 & 6 \\
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 4
+                \end{array}
+                \right]
+                \]
+
+                <b>Kesimpulan</b><br>
+
+                Muncul baris:
+
+                \[
+                [\,0 \quad 0 \quad 0 \mid 4\,]
+                \]
+
+                Artinya:
+
+                \[
+                0x + 0y + 0z = 4
+                \]
+
+                \[
+                0 = 4
+                \]
+
+                Ini adalah <b>kontradiksi</b>.
+
+                <br>Maka sistem <b>tidak memiliki solusi</b>.</p>
+        </div>
+    </body>
+</html>

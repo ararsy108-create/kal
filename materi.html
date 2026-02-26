@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>KOMPUTASI ALJABAR LINIER (SISTEM PERSAMAAN LINIER)</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        <div class="container-navbar">
+            <ul class="ul-navbar">
+                <li class="li-navbar">
+                    <a href="index.html" class="a-navbar">HOME</a>
+                </li>
+                <li class="li-navbar">
+                    <a href="materi.html" class="a-navbar">MATERI</a>
+                </li>
+                <li class="li-navbar">
+                    <a href="obe.html" class="a-navbar">OBE</a>
+                </li>
+                <li class="li-navbar">
+                    <a href="python.html" class="a-navbar">PYTHON</a>
+                </li>
+                <li class="li-navbar">
+                    <a href="geogebra.html" class="a-navbar">GEOGEBRA</a>
+                </li>
+            </ul>
+            <h3 class="h-navbar">1.1  Definisi Sistem Persamaan Linier</h3>
+            <p class="p-navbar"> Sistem persamaan linear adalah kumpulan dari dua atau lebih persamaan linear dengan variabel yang sama. Sistem Persamaan Linier Sebuah ekspresi linier dalam (n) peubah (atau variabel) \(x_1, x_2, \ldots, x_n\) adalah suatu bentuk yang dituliskan sebagai:
+            <p class="p-navbar">\(a_1 x_1 + a_2 x_2 + \cdots + a_n x_n\)</p>
+            <p class="p-navbar">di mana \(a_1, a_2, \ldots, a_n\) adalah bilangan real tetap (konstanta). Sebuah persamaan linier dalam peubah \(x_1, x_2, \ldots, x_n\) adalah suatu persamaan yang dapat disederhanakan, hanya dengan menggunakan operasi penjumlahan dan pengurangan, menjadi bentuk:</p>
+            <p class="p-navbar">\(a_1 x_1 + a_2 x_2 + \cdots + a_n x_n = b\) di mana (b) adalah suatu bilangan real.</p>
+            <hr color="nnnnnn" size="2px">
+            
+            <h3 class="h-navbar">1.2  Tujuan Sistem Persamaan Linier</h3>
+            <p class="p-navbar">Tujuan utama: Menemukan nilai variabel yang memenuhi semua persamaan secara bersamaan. Contoh Umum:
+            <p class="p-navbar">\(x + y = 5\)</p>
+            <p class="p-navbar">\(2x - y = 1\)</p>
+            <hr color="nnnnnn" size="2px">
+
+            <h3 class="h-navbar">1.3  Bentuk Umum Sistem Persamaan Linier</h3>
+            <p class="p-navbar">Bentuk Umum Sistem Persamaan Linier
+            <br>\(a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1\)
+            <br>\(a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2\)
+            <br>\(\vdots \)
+            <br>\(a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m\)</p>
+            <p class="p-navbar">Keterangan:
+            <br>\( a_{ij} \) : Koefisien variabel
+            <br>\( x_j \) : Variabel
+            <br>\( b_i \) : Konstanta</p>
+            <hr color="nnnnnn" size="2px">
+
+            <h3 class="h-navbar">1.4  Matriks Representasi</h3>
+            <p class="p-navbar">\[
+                A \cdot X = B
+                \]</p>
+            <p class="p-navbar">Di mana:
+            <br>( A ) adalah matriks koefisien
+            <br>( X ) adalah vektor variabel
+            <br>( B ) adalah vektor konstanta</p>
+            <p class="p-navbar">Sistem Persamaan Linier</p>
+            <p class="p2-navbar">\(a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1\)
+            <br>\(a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2\)
+            <br>\(\vdots \)
+            <br>\(a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m\)</p>
+            <p class="p-navbar">Bentuk Matriks</p>
+            <p class="p2-navbar">\[
+                \begin{array}{cccc|c}
+                a_{11} & a_{12} & \cdots & a_{1n} & b_1 \\
+                a_{21} & a_{22} & \cdots & a_{2n} & b_2 \\
+                \vdots & \vdots & \ddots & \vdots & \vdots \\
+                a_{m1} & a_{m2} & \cdots & a_{mn} & b_m
+                \end{array}
+                \]
+            </p>
+            <ul class="ul2-navbar">Keterangan:
+                <li class="li2-navbar">Bagian kiri (sebelum garis vertikal) adalah matriks koefisien</li>
+                <li class="li2-navbar">Bagian kanan (setelah garis vertikal) adalah vektor konstanta</li>
+                <li class="li2-navbar">Garis vertikal memisahkan koefisien dan konstanta</li>
+                </ul>
+            <hr color="nnnnnn" size="2px">
+
+            <h3 class="h-navbar">1.5  Jenis solusi dalam Sistem Persamaan Linier</h3>
+            <ul class="ul2-navbar">Solusi Sistem Persamaan Linear
+                <br>Jenis Solusi:
+                <li class="li2-navbar">Solusi Tunggal: Hanya ada satu set nilai variabel yang memenuhi semua persamaan.</li>
+                <li class="li2-navbar">Tidak Ada Solusi: Tidak ada nilai variabel yang memenuhi semua persamaan (sistem inkonsisten).</li>
+                <li class="li2-navbar">Solusi Tak Terhingga: Ada tak terhingga banyaknya solusi (sistem dependen).</li>
+            </ul>
+            <ul class="ul2-navbar">Contoh Grafis (2D):
+                <li class="li2-navbar">Garis berpotongan (solusi tunggal)</li>
+                <li class="li2-navbar">Garis sejajar (tidak ada solusi)</li>
+                <li class="li2-navbar">Garis berhimpit (tak terhingga)</li>
+            </ul>
+        </div>
+    </body>
+</html>
