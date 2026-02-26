@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>KOMPUTASI ALJABAR LINIER (SISTEM PERSAMAAN LINIER)</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        <div class="container-navbar">
+            <ul class="ul-navbar">
+                <li class="li-navbar">
+                    <a href="index.html" class="a-navbar">HOME</a>
+                </li>
+                <li class="li-navbar">
+                    <a href="materi.html" class="a-navbar">MATERI</a>
+                </li>
+                <li class="li-navbar">
+                    <a href="obe.html" class="a-navbar">OBE</a>
+                </li>
+                <li class="li-navbar">
+                    <a href="python.html" class="a-navbar">PYTHON</a>
+                </li>
+                <li class="li-navbar">
+                    <a href="geogebra.html" class="a-navbar">GEOGEBRA</a>
+                </li>
+            </ul>
+
+            <h3 class="h-navbar">2.1  Definisi Operasi Baris Elementer pada Matriks</h3>
+            <ol class="ol-navbar">Operasi baris elementer adalah salah satu dari tiga jenis operasi matriks berikut.
+            <br>Misalkan \( A \) adalah matriks berukuran \( m \times n \), dan nyatakan \( r_i \) sebagai baris ke-\( i \) dari matriks \( A \).
+                <li class="li2-navbar"> Perkalian Skalar (Scalar Multiplication) Mengalikan suatu baris dengan bilangan tak nol \( c \neq 0 \), yaitu mengganti \( r_i \) dengan \( c r_i \).Artinya, semua elemen pada baris tersebut dikalikan dengan \( c \).</li>
+                <li class="li2-navbar"> Pertukaran Baris (Row Swap) Menukar dua baris pada matriks \( A \).</li>
+                <li class="li2-navbar"> Penjumlahan Baris (Row Addition) Menambahkan kelipatan suatu baris ke baris lainnya, yaitu mengganti \( r_i \) dengan \( r_i + c r_j \) untuk suatu \( c, i, \) dan \( j \).</li>
+            </ol>
+            <p class="p-navbar">Proses mengubah suatu matriks menggunakan operasi baris elementer disebut <b>reduksi baris (row reduction)</b>.Dua matriks disebut <b>ekuivalen baris (row equivalent)</b> jika salah satunya dapat diperoleh dari yang lain melalui sejumlah hingga operasi baris elementer.</p>
+            <hr color="nnnnnn" size="2px">
+
+            <h3 class="h-navbar">2.2  Notasi Operasi Baris Elementer</h3>
+            <p class="p-navbar">Notasi operasi elementer yang telah dibahas sebelumnya dengan mudah diterapkan pada operasi baris pada matriks. Ekspresi berikut:</p>
+            <p class="p2-navbar">\[
+                A \xrightarrow{c r_i} B
+                \qquad
+                A \xrightarrow{r_i \leftrightarrow r_j} B
+                \qquad
+                A \xrightarrow{r_i + c r_j} B
+            \]</p>
+            <p class="p-navbar">Menyatakan operasi yang masing-masing berarti: 
+            <br>- Mengganti baris \( r_i \) pada matriks \( A \) dengan \( c r_i \). 
+            <br>- Menukar baris \( r_i \) dan \( r_j \) pada matriks \( A \). 
+            <br>- Mengganti baris \( r_i \) pada matriks \( A \) dengan \( r_i + c r_j \).</p>
+            <p class="p-navbar">Pada dasarnya, ini adalah suatu prosedur atau <b>algoritma</b> yang menerima matriks input \( A \) dan mereduksinya menjadi matriks \( B \) dalam bentuk eselon baris <b>row echelon form</b>. Penting untuk dicatat bahwa meskipun dalam bab ini eliminasi Gauss terutama digunakan untuk menyederhanakan dan menyelesaikan sistem persamaan linear, metode ini bukan satu-satunya penerapannya. Sesungguhnya, prosedur ini akan digunakan berulang kali dalam berbagai konteks dan untuk tujuan yang beragam. Eliminasi Gauss merupakan salah satu alat paling penting dalam aljabar linear. Di sini kita mengingatnya sebagai suatu prinsip resmi.</p>
+            <hr color="nnnnnn" size="2px">
+
+            <h3 class="h-navbar">2.3 Langkah-Langkah Menjalankan Operasi Baris Elementer</h3>
+            <p class="p-navbar"><b>Eliminasi Gauss (Gaussian elimination)</b> adalah algoritma yang dijelaskan di bawah ini. Metode ini menerima sebuah matriks \( A \) sebagai input dan menghasilkan matriks \( B \) yang ekuivalen baris dalam bentuk eselon baris <b>row echelon form</b>.</p>
+            <ol class="ol-navbar">Langkah-Langkah:
+                <li class="li2-navbar">Temukan kolom paling kiri yang memiliki elemen tak nol, lalu lakukan pertukaran baris <b>row swap</b> untuk memindahkan baris yang memiliki elemen tak nol tersebut ke bagian paling atas matriks.</li>
+                <li class="li2-navbar">Kalikan baris teratas yang baru dengan suatu skalar sehingga menghasilkan angka 1 utama <b>eading one</b>l pada baris tersebut. Sebut baris baru ini sebagai \( r \).</li>
+                <li class="li2-navbar">Untuk setiap baris \( r_i \) di bawah \( r \), lakukan operasi baris dalam bentuk \( r_i + c r \) untuk mengubah semua elemen di bawah angka 1 utama pada baris \( r \) menjadi nol.</li>
+                <li class="li2-navbar">Ulangi kembali dari Langkah 1, tetapi hanya diterapkan pada submatriks yang terdiri dari semua baris di bawah \( r \). Lanjutkan proses ini sampai matriks berada dalam bentuk eselon baris.</li>
+            </ol>
+            <hr color="nnnnnn" size="2px">
+
+            <h3 class="h-navbar">2.4 Contoh Proses Eliminasi Gauss</h3>
+            <p class="p-navbar"><b>Diberikan matriks:</b>
+                \[
+                \begin{bmatrix}
+                0 & 0 & -2 & 0 & 7 & 12 \\
+                2 & 4 & -10 & 6 & 12 & 28 \\
+                2 & 4 & -5 & 6 & -5 & -1
+                \end{bmatrix}
+                \]
+
+                <b>Langkah 1:</b> Tukar Baris 1 dan Baris 2
+                \[
+                r_1 \leftrightarrow r_2
+                \]
+
+                \[
+                \begin{bmatrix}
+                2 & 4 & -10 & 6 & 12 & 28 \\
+                0 & 0 & -2 & 0 & 7 & 12 \\
+                2 & 4 & -5 & 6 & -5 & -1
+                \end{bmatrix}
+                \]
+
+                <b>Langkah 2:</b> Skala Baris 1
+                \[
+                \frac{1}{2} r_1
+                \]
+
+                \[
+                \begin{bmatrix}
+                1 & 2 & -5 & 3 & 6 & 14 \\
+                0 & 0 & -2 & 0 & 7 & 12 \\
+                2 & 4 & -5 & 6 & -5 & -1
+                \end{bmatrix}
+                \]
+
+                <b>Langkah 3:</b> Eliminasi Elemen di Bawah Leading 1
+                \[
+                r_3 - 2r_1
+                \]
+
+                \[
+                \begin{bmatrix}
+                1 & 2 & -5 & 3 & 6 & 14 \\
+                0 & 0 & -2 & 0 & 7 & 12 \\
+                0 & 0 & 5 & 0 & -17 & -29
+                \end{bmatrix}
+                \]
+
+                <p class="p2-navbar">Selesai untuk baris pertama</p>
+                <p class="p-navbar"><b>Langkah 4:</b> Skala Baris 2
+                \[
+                -\frac{1}{2} r_2
+                \]
+
+                \[
+                \begin{bmatrix}
+                1 & 2 & -5 & 3 & 6 & 14 \\
+                0 & 0 & 1 & 0 & -\frac{7}{2} & -6 \\
+                0 & 0 & 5 & 0 & -17 & -29
+                \end{bmatrix}
+                \]
+
+                <b>Langkah 5:</b> Eliminasi Elemen di Bawah Leading 1 Kedua
+                \[
+                r_3 + (-5) r_2
+                \]
+
+                \[
+                \begin{bmatrix}
+                1 & 2 & -5 & 3 & 6 & 14 \\
+                0 & 0 & 1 & 0 & -\frac{7}{2} & -6 \\
+                0 & 0 & 0 & 0 & \frac{1}{2} & 1
+                \end{bmatrix}
+                \]
+                </p>
+                <p class="p2-navbar">Selesai untuk baris kedua</p>
+                <p class="p-navbar"><b>Langkah 6:</b> Skala Baris 3
+                \[
+                2 r_3
+                \]
+
+                \[
+                \begin{bmatrix}
+                1 & 2 & -5 & 3 & 6 & 14 \\
+                0 & 0 & 1 & 0 & -\frac{7}{2} & -6 \\
+                0 & 0 & 0 & 0 & 1 & 2
+                \end{bmatrix}
+                \]</p>
+        </div>
+    </body>
+</html>
