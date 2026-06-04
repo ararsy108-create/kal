@@ -1,81 +1,91 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>KOMPUTASI ALJABAR LINIER (SISTEM PERSAMAAN LINIER)</title>
-        <link rel="stylesheet" href="style.css" />
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    </head>
-    <body>
-        <div class="container-navbar">
-            <ul class="ul-navbar">
-                <li class="li-navbar">
-                    <a href="index.html" class="a-navbar">HOME</a>
-                </li>
-                <li class="li-navbar">
-                    <a href="materi.html" class="a-navbar">MATERI</a>
-                </li>
-                <li class="li-navbar">
-                    <a href="obe.html" class="a-navbar">OBE</a>
-                </li>
-                <li class="li-navbar">
-                    <a href="python.html" class="a-navbar">PYTHON</a>
-                </li>
-                <li class="li-navbar">
-                    <a href="geogebra.html" class="a-navbar">GEOGEBRA</a>
-                </li>
-            </ul>
-            <h3 class="h-navbar">Deskripsi Sistem Persaman Linier</h3>
-            <p class="p-navbar">Sistem Persamaan Linier (SPL) adalah kumpulan dua atau lebih persamaan linier yang memiliki variabel yang sama dan harus dipenuhi secara bersamaan. Artinya, kita mencari nilai variabel yang membuat semua persamaan dalam sistem tersebut benar sekaligus.</p>
-            <hr color="nnnnnn" size="2px">
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komputasi SVD NumPy Interaktif</title>
+    
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    
+    <script>
+    sagecell.makeSagecell({
+        inputLocation: '.python-svd',
+        languages: ['python'], // Mengubah bahasa ke Python agar NumPy bisa berjalan
+        evalButtonText: 'Hitung SVD',
+        autoeval: false // Atur ke true jika ingin kode langsung berjalan saat halaman dimuat
+    });
+    </script>
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eceff1;
+            padding-bottom: 10px;
+        }
+        .instruksi {
+            background-color: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
 
-            <h3 class="h-navbar">Bentuk Umum</h3>
-            <p class="p-navbar">Untuk dua variabel:
-            <br>\(\begin{cases}
-            a_1x + b_1y = c_1 \\
-            a_2x + b_2y = c_2
-            \end{cases}\)</p>
-            <p class="p-navbar">Untuk bentuk umum dengan banyak variabel:
-            <br>\(a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1\)
-            <br>\(a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2\)
-            <br>\(\vdots\)
-            <br>\(a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m\)</p>
-            <hr color="nnnnnn" size="2px">
+    <h2>Kalkulator Singular Value Decomposition (SVD)</h2>
+    
+    <div class="instruksi">
+        <p><strong>Petunjuk:</strong> Anda dapat mengubah angka elemen matriks <code>A</code> di dalam kotak kode di bawah ini secara langsung, lalu klik tombol <strong>"Hitung SVD"</strong> untuk melihat hasil dekomposisi dan rekonstruksinya.</p>
+    </div>
 
-            <h3 class="h-navbar">Tujuan Sistem Persamaan Linier</h3>
-            <p class="p-navbar">Menentukan nilai variabel \(x_1, x_2, \ldots, x_n\) yang memenuhi semua persamaan secara bersamaan.</p>
-            <hr color="nnnnnn" size="2px">
+    <div class="python-svd">
+        <textarea style="width: 100%; height: 420px;">
+import numpy as np
 
-            <h3 class="h-navbar">Interpretasi Geometri</h3>
-            <ul>
-                <li class="li2-navbar">Sistem Persamaan Linier 2 variabel → perpotongan dua garis</li>
-                <li class="li2-navbar">Sistem Persamaan Linier 3 variabel → perpotongan tiga bidang</li>
-                <li class="li2-navbar">Jika garis/bidang berpotongan di satu titik → solusi tunggal</li>
-                <li class="li2-navbar">Jika sejajar → tidak ada solusi</li>
-                <li class="li2-navbar">Jika berimpit → tak hingga solusi</li>
-            </ul>
-            <hr color="nnnnnn" size="2px">
+# Matriks 3x3 yang akan didekomposisi
+A = np.array([
+    [4, 1, 1],
+    [-1, 3, 1],
+    [1, 5, 2]
+], dtype=float)
 
-            <h3 class="h-navbar">Metode Penyelesaian</h3>
-            <ul class="ul2-navbar">Beberapa metode yang digunakan untuk menyelesaikan SPL:
-                <li class="li2-navbar">Metode Substitusi</li>
-                <li class="li2-navbar">Metode Eliminasi</li>
-                <li class="li2-navbar">Metode Grafik</li>
-                <li class="li2-navbar">Metode Matriks (Invers, OBE/Gauss, Gauss-Jordan)</li>
-            </ul>
-            <hr color="nnnnnn" size="2px">
+# Melakukan Singular Value Decomposition
+U, S, VT = np.linalg.svd(A)
 
-            <h3 class="h-navbar">Representasi Matriks</h3>
-            <p class="p-navbar">SPL dapat ditulis dalam bentuk matriks:</p>
-            <p class="p2-navbar">\(A \cdot X = B\)</p>
-            <p class="p-navbar">dengan:
-            <br>\(A\) = matriks koefisien
-            <br>\(X\) = vektor variabel
-            <br>\(B\) = vektor konstanta</p>
-            <hr color="nnnnnn" size="2px">
+# Mengubah singular values (array 1D) menjadi matriks diagonal 3x3
+Sigma = np.diag(S)
 
-            <h3 class="h-navbar">Kesimpulan singkat</h3>
-            <p class="p-navbar">Sistem Persamaan Linier adalah sekumpulan persamaan linier yang diselesaikan secara simultan untuk menemukan nilai variabel yang memenuhi seluruh persamaan tersebut, baik secara aljabar maupun geometris.</p>
-        </div>
-    </body>
+# Menampilkan Hasil Komputasi
+print("=== MATRIKS U ===")
+print(np.round(U, 4))
+
+print("\n=== MATRIKS SIGMA (Σ) ===")
+print(np.round(Sigma, 4))
+
+print("\n=== MATRIKS V^T ===")
+print(np.round(VT, 4))
+
+print("\n" + "="*40)
+# Verifikasi perkalian rekonstruksi A = U @ Sigma @ VT
+A_rekonstruksi = U @ Sigma @ VT
+
+print("\n=== HASIL REKONSTRUKSI (U @ Sigma @ V^T) ===")
+print(np.round(A_rekonstruksi, 4))
+
+print("\n=== MATRIKS A ASLI ===")
+print(A)
+        </textarea>
+    </div>
+
+</body>
 </html>
